@@ -1,0 +1,31 @@
+﻿@using HtmlHelpers.BeginCollectionItem
+@model CategoryFilter.Entities.PropertyValue
+@{
+    int j = 0;
+}
+<tr>
+    @using (Html.BeginCollectionItem("PropertiesValue"))
+    {
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.ProductId)
+        <td>
+            <div class="input-group">
+                @Html.DropDownListFor(model => model.PropertyId, new SelectList(CategoryFilter.Code.Help.GetProperties(ViewBag.CategoryId), "Value", "Text"), "[Вибрати]", new { @class = "form-control form-control-sm" })
+                <div class="invalid-feedback">
+                    @Html.ValidationMessageFor(model => model.PropertyId)
+                </div>
+            </div>
+        </td>
+        <td>
+            <div class="input-group">
+                @Html.TextBoxFor(model => model.Value, new { placeholder = @Html.DisplayNameFor(m => m.Value), @class = "form-control form-control-sm" })
+                <div class="invalid-feedback">
+                    @Html.ValidationMessageFor(model => model.Value)
+                </div>
+            </div>
+        </td>
+        <td>
+            <button type="button" class="btn btn-danger btn-sm" id="Remove"><i class="fas fa-trash-alt"></i></button>
+        </td>
+    }
+</tr>

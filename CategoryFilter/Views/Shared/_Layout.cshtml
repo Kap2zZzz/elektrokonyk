@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.js"></script>
+    <meta name="viewport" content="width=device-width" />
+    <title>Загальна форма по робы з БД</title>
+</head>
+<body>
+    <div class="container" style="margin: 50px auto">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                @Html.ActionLink("Категорії", "Categories", "Admin", null, new { @class = "nav-link " + @ViewBag.CategoriesActive })
+            </li>
+            <li class="nav-item">
+                @Html.ActionLink("Продукти", "Products", "Admin", null, new { @class = "nav-link " + @ViewBag.ProductsActive })
+                @*<a class="nav-link" href="#">Продукти</a>*@
+            </li>
+        </ul>
+        @RenderBody()
+    </div>
+</body>
+</html>
+@*<script>
+    $('#myTab a').on('click', function (e) {
+        e.preventDefault()
+        $(this).tab('show')
+    })
+</script>*@

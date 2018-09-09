@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.js"></script>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <title>Адміністратор</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row" style="margin-top:20px">
+            <div class="col text-left">
+                <h3>
+                    Вітаємо на сторінці Адміністратора.
+                </h3>
+            </div>
+            <div class="col text-right">
+                <p>
+                    <a href="@Url.Action("Index","Home")" class="btn btn-sm btn-secondary"><i class="fas fa-sitemap"></i> Повернутись до магазину</a>
+                </p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <ul class="nav nav-tabs card-header-tabs">
+                    <li class="nav-item">
+                        @Html.ActionLink("Категорії", "Categories", "Admin", null, new { @class = "nav-link " + @ViewBag.CategoriesActive })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Продукти", "Products", "Admin", null, new { @class = "nav-link " + @ViewBag.ProductsActive })
+                    </li>
+                </ul>
+            </div>
+            <div class="card-body">
+                @RenderBody()
+            </div>
+        </div>
+        <div>
+
+        </div>
+    </div>
+</body>
+</html>

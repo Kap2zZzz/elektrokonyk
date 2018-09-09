@@ -1,0 +1,54 @@
+﻿@using HtmlHelpers.BeginCollectionItem
+@model CategoryFilter.Entities.Property
+@{
+    int j = 0;
+}
+<tr>
+    @using (Html.BeginCollectionItem("Properties"))
+    {
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.CategoryId)
+        <td>
+            @*ID CATEGORY = @Model.Category.Id
+                ID CATEGORY = @Html.LabelFor(model => model.Category.Id)*@
+            @Html.TextBoxFor(model => model.Name, new { placeholder = @Html.DisplayNameFor(m => m.Name), @class = "form-control" })
+        </td>
+        <td>
+            <button type="button" id="Remove" class="btn btn-danger">-</button>
+            @*<button type="button" id="Remove"><i class="fa fa-remove" style="color:#e43b3b"></i></button>*@
+        </td>
+        @*<td>
+                <table id="tbPropertyValues" border="0">
+                    @if (Model.PropertiesValue != null && Model.PropertiesValue.Count > 0)
+                    {
+                        foreach (CategoryFilter.Entities.PropertyValue p in Model.PropertiesValue)
+                        {
+                            Html.RenderPartial("PropertyValue", p);
+                            j++;
+                        }
+                    }
+                </table>
+                <p style="margin: 0; margin-top: 10px">
+                    <button type="button" id="addPropertyValue"><i class="fa fa-plus" style="color:#00a569"></i></button>
+                </p>
+            </td>*@
+    }
+
+</tr>
+
+@*<script>
+        $("#addPropertyValue").click(function () {
+            $.ajax({
+                url: '@Url.Action("AddNewPropertyValueElement", "Home")',
+                cache: false,
+                success: function (html) { $("#tbPropertyValues").append(html); }
+            });
+            return false;
+        })
+
+        $('#tbPropertyValues').on('click', '#Remove', function () {
+            $(this).parents("tr:first").remove();
+            return false;
+        })
+
+    </script>*@

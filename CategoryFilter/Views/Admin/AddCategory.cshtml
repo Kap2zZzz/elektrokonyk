@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <title></title>
+    @{
+        ViewBag.Title = "Нова категорія";
+        Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    }
+</head>
+@model CategoryFilter.Entities.Category
+@{
+    int j = 0;
+}
+<body class="bg-light">
+    <div class="container" style="margin-top:10px;">
+        @using (Html.BeginForm())
+        {
+            <div class="form-group">
+                <h4 class="text-muted">Категорія</h4>
+                <div class="input-group">
+                    @Html.TextBoxFor(model => model.Name, new { placeholder = @Html.DisplayNameFor(m => m.Name), @class = "form-control form-control-sm" })
+                    <div class="invalid-feedback">
+                        @Html.ValidationMessageFor(model => model.Name)
+                    </div>
+                </div>
+            </div>
+            <h3>Властивості категорії</h3>
+            <table id="tbProperties" border="0" class="table">
+                <tr>
+                    <th width="50%" class="text-muted">Назва властивості</th>
+                    <th></th>
+                </tr>
+                @if (Model.Properties != null && Model.Properties.Count > 0)
+                {
+                    foreach (CategoryFilter.Entities.Property p in Model.Properties)
+                    {
+                        Html.RenderPartial("Property", p);
+                        j++;
+                    }
+                }
+            </table>
+            <p style="margin: 0; margin-top: 10px">
+                <button type="button" id="addProperty" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i></button>
+            </p>
+            <div style="text-align:right; clear:both; margin:auto;">
+                @Html.ActionLink("Назад", "Categories", "Admin", null, new { @class = "btn btn-secondary btn-sm" })
+                <input type="submit" value="Зберегти" class="btn btn-success btn-sm" />
+            </div>
+        }
+    </div>
+</body>
+</html>
+
+<script>
+    $("#addProperty").click(function () {
+        $.ajax({
+            url: '@Url.Action("AddNewPropertyElement", "Admin")',
+            cache: false,
+            success: function (html) { $("#tbProperties").append(html); }
+        });
+        return false;
+    })
+
+    $('#tbProperties').on('click', '#Remove', function () {
+        $(this).parents("tr:first").remove();
+        return false;
+    })
+
+    $('.input-validation-error').each(function () {
+        $(this).addClass('is-invalid');
+    });
+</script>

@@ -1,0 +1,63 @@
+﻿@model CategoryFilter.Entities.Category
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+@{
+    ViewBag.Title = "Банк | IPOTEKA-UA";
+    //Layout = "~/Views/_BasicLayout.cshtml";
+}
+
+@{
+    int j = 0;
+}
+<div class="container">
+
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+        <div class="form-group">
+            <h2>Категорія</h2>
+            @Html.TextBoxFor(model => model.Name, new { placeholder = @Html.DisplayNameFor(m => m.Name), @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <h3>Властивості категорії</h3>
+        <table id="tbProperties" border="0" class="table">
+            <tr>
+                <th>Назва властивості</th>
+            </tr>
+            @if (Model.Properties != null && Model.Properties.Count > 0)
+            {
+                foreach (CategoryFilter.Entities.Property p in Model.Properties)
+                {
+                    Html.RenderPartial("Property", p);
+                    j++;
+                }
+            }
+        </table>
+
+        <p style="margin: 0; margin-top: 10px">
+            <button type="button" id="addProperty" class="btn btn-primary">+</button>
+        </p>
+
+        <div style="text-align:right; clear:both; margin:auto; margin-bottom:20px;">
+            @Html.ActionLink("Назад", "Index", "Home", null, new { @class = "btn btn-secondary" })
+            <input type="submit" value="Зберегти" class="btn btn-success" />
+        </div>
+    }
+</div>
+
+<script>
+    $("#addProperty").click(function () {
+        $.ajax({
+            url: '@Url.Action("AddNewPropertyElement", "Category", new { Id = 5})',
+            cache: false,
+            success: function (html) { $("#tbProperties").append(html); }
+        });
+        return false;
+    })
+
+    $('#tbProperties').on('click', '#Remove', function () {
+        $(this).parents("tr:first").remove();
+        return false;
+    })
+</script>

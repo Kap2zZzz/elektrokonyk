@@ -1,0 +1,220 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width" />
+    <title>ЕЛЕКТРОКОНИК</title>
+    <style>
+        /*.dropdown-menu {
+            min-width: 200px;
+        }
+
+            .dropdown-menu.columns-2 {
+                min-width: 400px;
+            }
+
+            .dropdown-menu.columns-3 {
+                min-width: 600px;
+            }
+
+            .dropdown-menu li a {
+                padding: 5px 15px;
+                font-weight: 300;
+            }
+
+        .multi-column-dropdown {
+            list-style: none;
+            margin: 0px;
+            padding: 0px;
+        }
+
+            .multi-column-dropdown li a {
+                display: block;
+                clear: both;
+                line-height: 1.428571429;
+                color: #333;
+                white-space: normal;
+            }
+
+                .multi-column-dropdown li a:hover {
+                    text-decoration: none;
+                    color: #262626;
+                    background-color: #999;
+                }
+            }
+        }*/
+    </style>
+</head>
+<body class="bg-light">
+    <div class="container">
+        <div id="menu" class="row">
+            <div class="col-md-7">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Про нас</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Доставка та оплата</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Контакти</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-5">
+                <ul class="nav justify-content-end">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Вхід</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Index","Admin")" ><i class="fas fa-user-cog"></i> Адміністратор</a>
+                        @*@Html.ActionLink("Admin", "Index", "Admin", null, new { @class = "nav-link" })*@
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <hr style="margin-top:5px;"/>
+        <div id="menu2" class="row align-items-center">
+            <div class="col-3">
+                <img src="~/Image/Logo.png" width="100%">
+            </div>
+            <div class="col-4">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Пошук товару" aria-label="Recipient's username" aria-describedby="button-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" id="button-addon2"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="input-group">
+                    -------------------------------
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="input-group-append">
+                    <table>
+                        <tr>
+                            <td>
+                                <button class="btn btn-outline-secondary" type="button" id="button-addon2"><i class="fas fa-shopping-cart"></i></button>
+                            </td>
+                            <td>
+                                <b>Корзина</b>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div id="menu3">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item dropdown" style="position: static !important">
+                        <a class="nav-link dropdown-toggle text-uppercase small" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-lightbulb"></i> Кабельна продукція
+                        </a>
+                        <div class="dropdown-menu col-sm-6" aria-labelledby="navbarDropdown">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <strong><span class="dropdown-item-text text-info">Мідний кабель</span></strong>
+                                    <div class="dropdown-divider"></div>
+                                    @Html.ActionLink("ВВГ-П", "Products", "Home", new { Category = "ВВГ-П" }, new { @class = "dropdown-item text-primary" })
+                                    @Html.ActionLink("ПВС", "Products", "Home", new { Category = "ПВС" }, new { @class = "dropdown-item text-primary" })
+                                    @Html.ActionLink("ШВВП", "Products", "Home", new { Category = "ШВВП" }, new { @class = "dropdown-item text-primary" })
+                                </div>
+                                <div class="col-sm-6">
+                                    <strong><span class="dropdown-item-text text-info">Алюмінієвий кабель</span></strong>
+                                    <div class="dropdown-divider"></div>
+                                    @Html.ActionLink("АВВГ", "Products", "Home", new { CategoryId = 2 }, new { @class = "dropdown-item text-primary" })
+                                    @Html.ActionLink("АППВ", "Products", "Home", new { CategoryId = 3 }, new { @class = "dropdown-item text-primary" })
+                                    @Html.ActionLink("СИП", "Products", "Home", null, new { @class = "dropdown-item text-primary" })
+                                </div>
+                                @*<div class="col-sm-3">
+                                    <h4 class="dropdown-item-text text-primary">Заголовок 3</h4>
+                                    <a class="dropdown-item" href="#">Меню 7</a>
+                                    <a class="dropdown-item" href="#">Меню 8</a>
+                                    <a class="dropdown-item" href="#">Меню 9</a>
+                                    <div class="dropdown-divider"></div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <h4 class="dropdown-item-text text-primary">Заголовок 3</h4>
+                                    <a class="dropdown-item" href="#">Меню 7</a>
+                                    <a class="dropdown-item" href="#">Меню 8</a>
+                                    <a class="dropdown-item" href="#">Меню 9</a>
+                                    <div class="dropdown-divider"></div>
+                                </div>*@
+                            </div>
+                            @*<div class="row">
+                                <div class="col-sm-3">
+                                    <h4 class="dropdown-item-text text-primary">Заголовок 1</h4>
+                                    <a class="dropdown-item" href="#">LED світильники</a>
+                                    <a class="dropdown-item" href="#">Вуличні світильники</a>
+                                    <a class="dropdown-item" href="#">Світлодіодні ліхтарі</a>
+                                    <div class="dropdown-divider"></div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <h4 class="dropdown-item-text text-primary">Заголовок 2</h4>
+                                    <a class="dropdown-item" href="#">Меню 4</a>
+                                    <a class="dropdown-item" href="#">Меню 5</a>
+                                    <a class="dropdown-item" href="#">Меню 6</a>
+                                    <div class="dropdown-divider"></div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <h4 class="dropdown-item-text text-primary">Заголовок 3</h4>
+                                    <a class="dropdown-item" href="#">Меню 7</a>
+                                    <a class="dropdown-item" href="#">Меню 8</a>
+                                    <a class="dropdown-item" href="#">Меню 9</a>
+                                    <div class="dropdown-divider"></div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <h4 class="dropdown-item-text text-primary">Заголовок 3</h4>
+                                    <a class="dropdown-item" href="#">Меню 7</a>
+                                    <a class="dropdown-item" href="#">Меню 8</a>
+                                    <a class="dropdown-item" href="#">Меню 9</a>
+                                    <div class="dropdown-divider"></div>
+                                </div>
+                            </div>*@
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown" style="position: static !important">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Кабельна продукція
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <h4 class="dropdown-item-text text-primary">Заголовок 1</h4>
+                                    <a class="dropdown-item" href="#">LED світильники</a>
+                                    <a class="dropdown-item" href="#">Вуличні світильники</a>
+                                    <a class="dropdown-item" href="#">Світлодіодні ліхтарі</a>
+                                    <div class="dropdown-divider"></div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <h4 class="dropdown-item-text text-primary">Заголовок 2</h4>
+                                    <a class="dropdown-item" href="#">Меню 4</a>
+                                    <a class="dropdown-item" href="#">Меню 5</a>
+                                    <a class="dropdown-item" href="#">Меню 6</a>
+                                    <div class="dropdown-divider"></div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <h4 class="dropdown-item-text text-primary">Заголовок 3</h4>
+                                    <a class="dropdown-item" href="#">Меню 7</a>
+                                    <a class="dropdown-item" href="#">Меню 8</a>
+                                    <a class="dropdown-item" href="#">Меню 9</a>
+                                    <div class="dropdown-divider"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>                 
+                </ul>
+            </nav>
+        </div>
+        <div>
+            @RenderBody()
+        </div>
+    </div>
+</body>
+</html>

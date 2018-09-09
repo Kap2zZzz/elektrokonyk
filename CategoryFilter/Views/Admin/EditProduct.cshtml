@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <title></title>
+    @{
+        ViewBag.Title = "Продукт";
+        Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    }
+</head>
+@model CategoryFilter.Entities.Product
+@{
+    int j = 0;
+}
+<body class="bg-light">
+    <div class="container" style="margin-top:10px;">
+        @using (Html.BeginForm())
+        {
+            <div class="form-group">
+                <h4 class="text-muted">Категорія</h4>
+                <div class="input-group">
+                    @Html.DropDownListFor(model => model.CategoryId, new SelectList(CategoryFilter.Code.Help.GetCategories(), "Value", "Text"), "[Вибрати]", new { @class = "form-control form-control-sm" })
+                    <div class="invalid-feedback">
+                        @Html.ValidationMessageFor(model => model.CategoryId)
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <h4 class="text-muted">Продукт</h4>
+                <div class="input-group">
+                    @Html.TextBoxFor(model => model.Name, new { placeholder = @Html.DisplayNameFor(m => m.Name), @class = "form-control form-control-sm" })
+                    <div class="invalid-feedback">
+                        @Html.ValidationMessageFor(model => model.Name)
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <h4 class="text-muted">Опис</h4>
+                <div class="input-group">
+                    @Html.TextBoxFor(model => model.Description, new { placeholder = @Html.DisplayNameFor(m => m.Description), @class = "form-control form-control-sm" })
+                    <div class="invalid-feedback">
+                        @Html.ValidationMessageFor(model => model.Description)
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <h4 class="text-muted">Ціна</h4>
+                <div class="input-group">
+                    @Html.TextBoxFor(model => model.Price, new { placeholder = @Html.DisplayNameFor(m => m.Price), @class = "form-control form-control-sm" })
+                    <div class="invalid-feedback">
+                        @Html.ValidationMessageFor(model => model.Price)
+                    </div>
+                </div>
+            </div>
+            <h3>Заповнення фільтрів</h3>
+            <table id="tbPropertiesValue" border="0" class="table">
+                <tr>
+                    <th width="45%" class="text-muted">Властивість</th>
+                    <th width="45%" class="text-muted">Значення властивості</th>
+                    <th></th>
+                </tr>
+                @if (Model.PropertiesValue != null && Model.PropertiesValue.Count > 0)
+                {
+                    foreach (CategoryFilter.Entities.PropertyValue pv in Model.PropertiesValue)
+                    {
+                        Html.RenderPartial("PropertyValue", pv);
+                        j++;
+                    }
+                }
+            </table>
+            <p style="margin: 0; margin-top: 10px">
+                <button type="button" id="addPropertyValue" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i></button>
+            </p>
+            <div style="text-align:right; clear:both; margin:auto;">
+                @Html.ActionLink("Назад", "Products", "Admin", null, new { @class = "btn btn-secondary btn-sm" })
+                <input type="submit" value="Зберегти" class="btn btn-success btn-sm" />
+            </div>
+        }
+    </div>
+</body>
+</html>
+
+<script>
+    $("#addPropertyValue").click(function () {
+        $.ajax({
+            url: '@Url.Action("AddNewPropertyValueElement", "Admin")',
+            cache: false,
+            data: ({
+                //insert your parameters to pass to controller
+                CategoryId: $("#CategoryId").val()
+            }),
+            success: function (html) { $("#tbPropertiesValue").append(html); }
+        });
+        return false;
+    })
+
+    $('#tbPropertiesValue').on('click', '#Remove', function () {
+        $(this).parents("tr:first").remove();
+        return false;
+    })
+
+    $('.input-validation-error').each(function () {
+        $(this).addClass('is-invalid');
+    });
+</script>
