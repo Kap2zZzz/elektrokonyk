@@ -26,7 +26,18 @@ namespace CategoryFilter.Controllers
             return View();
         }
 
-        public ActionResult Products(string Category)
+        public ActionResult Test()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Ajax()
+        {
+            return PartialView();
+        }
+
+        public ActionResult Products(string Category, int? PropertyId, string PropertyValue)
         {
             Category c = context.Categories.FirstOrDefault(x => x.Name == Category);
 
@@ -35,11 +46,22 @@ namespace CategoryFilter.Controllers
                 return HttpNotFound();
             }
 
-            FilterViewModel model = new FilterViewModel() 
+            IEnumerable<Product> tempProducts;
+
+            if (PropertyId > 0 && !String.IsNullOrEmpty(PropertyValue))
+            {
+                tempProducts = context.Products.Where(x => x.CategoryId == c.Id).Where(x => x.PropertiesValue.Any(z => z.PropertyId == PropertyId && z.Value == PropertyValue));
+            }
+            else tempProducts = context.Products.Where(x => x.CategoryId == c.Id);
+
+            FilterViewModel model = new FilterViewModel()
             {
                 CategoryName = Category,
-                Products = context.Products.Where(x=>x.CategoryId == c.Id),
-                Properties = context.Properties.Where(x=> x.CategoryId == c.Id).ToList(),
+
+                //Products = context.Products.Where(x => x.CategoryId == c.Id).Where(x => x.PropertiesValue.Any(z => z.PropertyId == PropertyId && z.Value == PropertyValue)),
+                Products = tempProducts,
+
+                Properties = context.Properties.Where(x => x.CategoryId == c.Id).ToList(),
                 PropertiesValue = context.PropertiesValue.ToList(),
             };
             //var xxx = context.PropertiesValue.GroupBy(x => x.Value, x => x.PropertyId).ToList();
@@ -49,6 +71,67 @@ namespace CategoryFilter.Controllers
             //}
 
             return View(model);
+            //return PartialView("_PartialProducts", model);
+        }
+
+        public ActionResult ProductsAjax(string Category, int? PropertyId, string PropertyValue)
+        {
+            Category c = context.Categories.FirstOrDefault(x => x.Name == Category);
+
+            if (c == null)
+            {
+                return HttpNotFound();
+            }
+
+            IEnumerable<Product> tempProducts;
+
+            if (PropertyId > 0 && !String.IsNullOrEmpty(PropertyValue))
+            {
+                tempProducts = context.Products.Where(x => x.CategoryId == c.Id).Where(x => x.PropertiesValue.Any(z => z.PropertyId == PropertyId && z.Value == PropertyValue));
+            }
+            else tempProducts = context.Products.Where(x => x.CategoryId == c.Id);
+
+            FilterViewModel model = new FilterViewModel()
+            {
+                CategoryName = Category,
+
+                //Products = context.Products.Where(x => x.CategoryId == c.Id).Where(x => x.PropertiesValue.Any(z => z.PropertyId == PropertyId && z.Value == PropertyValue)),
+                Products = tempProducts,
+
+                Properties = context.Properties.Where(x => x.CategoryId == c.Id).ToList(),
+                PropertiesValue = context.PropertiesValue.ToList(),
+            };
+            //var xxx = context.PropertiesValue.GroupBy(x => x.Value, x => x.PropertyId).ToList();
+            //foreach (var a in context.PropertiesValue.GroupBy(x => x.Value, x=>x.PropertyId).ToList())
+            //{
+            //    var z = a;
+            //}
+
+            return View(model);
+        }
+
+
+        [HttpPost]
+        public ActionResult ChangeFilter(string Category, int? PropertyId, string PropertyValue)
+        {
+            Category c = context.Categories.FirstOrDefault(x => x.Name == Category);
+
+            //if (c == null)
+            //{
+            //    return HttpNotFound();
+            //}
+
+            FilterViewModel model = new FilterViewModel()
+            {
+                CategoryName = Category,
+                Products = context.Products.Where(x => x.CategoryId == c.Id).Where(x => x.PropertiesValue.Any(z => z.PropertyId == PropertyId && z.Value == PropertyValue)),
+                Properties = context.Properties.Where(x => x.CategoryId == c.Id).ToList(),
+                PropertiesValue = context.PropertiesValue.ToList(),
+            };
+
+            return PartialView("_PartialProducts", model);
+            //return PartialView();
+
         }
 
         //public ActionResult CreateProduct()

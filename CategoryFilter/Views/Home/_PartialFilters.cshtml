@@ -1,25 +1,25 @@
 ﻿@model CategoryFilter.Models.FilterViewModel
-<form>
-    @if (Model.Properties != null && Model.Properties.Count() > 0)
-    {
-        <div>
-            @*<h1 class="h4 text-muted">@Model.CategoryName</h1>*@
-            @foreach (CategoryFilter.Entities.Property p in Model.Properties)
-            {
-                <div class="card" style="margin-bottom: 5px;">
-                    <div class="card-body">
-                        <h6 class="card-subtitle mb-2 text-primary">@p.Name</h6>
-                        @*@foreach (CategoryFilter.Entities.PropertyValue pv in Model.PropertiesValue.Where(x => x.PropertyId == p.Id))*@
-                        @foreach (var a in Model.PropertiesValue.Where(x=>x.PropertyId == p.Id).GroupBy(x => x.Value, x=>x.PropertyId).ToList())
+@if (Model.Properties != null && Model.Properties.Count() > 0)
+{
+    <div>
+        @foreach (CategoryFilter.Entities.Property p in Model.Properties)
+        {
+            <div class="card" style="margin-bottom: 5px;">
+                <div class="card-body">
+                    <h6 class="card-subtitle mb-2 text-primary">@p.Name</h6>
+                    @foreach (var a in Model.PropertiesValue.Where(x => x.PropertyId == p.Id).GroupBy(x => x.Value, x => x.PropertyId).ToList())
+                    {
+                        using (Ajax.BeginForm("ChangeFilter", "Home", new { Category = Model.CategoryName, PropertyId = p.Id, PropertyValue = a.Key }, new AjaxOptions { UpdateTargetId = "update" }))
                         {
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                <label class="form-check-label" for="defaultCheck1">@a.Key</label>
+                                @Html.CheckBox(a.Key, false, new { onclick = "this.form.submit();", id = "CheckFilterValue" })
+                                <input type="submit" value="OK" />
+                                @*<label class="form-check-label" for="defaultCheck1">@a.Key</label>*@
                             </div>
                         }
-                    </div>
+                    }
                 </div>
-            }
-        </div>
-    }
-</form>
+            </div>
+        }
+    </div>
+}

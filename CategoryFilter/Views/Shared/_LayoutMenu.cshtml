@@ -1,7 +1,8 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/jquery-3.0.0.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <script src="~/Scripts/bootstrap.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
@@ -54,7 +55,7 @@
             <div class="col-md-7">
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">Про нас</a>
+                        <a class="nav-link active" href="@Url.Action("Test","Home")">Про нас</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Доставка та оплата</a>

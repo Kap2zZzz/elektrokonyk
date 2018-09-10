@@ -31,3 +31,35 @@ C:\Users\Юрій\documents\visual studio 2013\Projects\CategoryFilter\CategoryF
 C:\Users\Юрій\documents\visual studio 2013\Projects\CategoryFilter\CategoryFilter\obj\Debug\CategoryFilter.dll
 C:\Users\Юрій\documents\visual studio 2013\Projects\CategoryFilter\CategoryFilter\obj\Debug\CategoryFilter.pdb
 C:\Users\Юрій\documents\visual studio 2013\Projects\CategoryFilter\CategoryFilter\obj\Debug\CategoryFilter.csprojResolveAssemblyReference.cache
+D:\GitHub\elektrokonyk\CategoryFilter\bin\CategoryFilter.dll.config
+D:\GitHub\elektrokonyk\CategoryFilter\bin\CategoryFilter.dll
+D:\GitHub\elektrokonyk\CategoryFilter\bin\CategoryFilter.pdb
+D:\GitHub\elektrokonyk\CategoryFilter\bin\BeginCollectionItem.dll
+D:\GitHub\elektrokonyk\CategoryFilter\bin\EntityFramework.dll
+D:\GitHub\elektrokonyk\CategoryFilter\bin\EntityFramework.SqlServer.dll
+D:\GitHub\elektrokonyk\CategoryFilter\bin\Microsoft.Web.Infrastructure.dll
+D:\GitHub\elektrokonyk\CategoryFilter\bin\Newtonsoft.Json.dll
+D:\GitHub\elektrokonyk\CategoryFilter\bin\System.Net.Http.Formatting.dll
+D:\GitHub\elektrokonyk\CategoryFilter\bin\System.Web.Helpers.dll
+D:\GitHub\elektrokonyk\CategoryFilter\bin\System.Web.Http.dll
+D:\GitHub\elektrokonyk\CategoryFilter\bin\System.Web.Http.WebHost.dll
+D:\GitHub\elektrokonyk\CategoryFilter\bin\System.Web.Mvc.dll
+D:\GitHub\elektrokonyk\CategoryFilter\bin\System.Web.Razor.dll
+D:\GitHub\elektrokonyk\CategoryFilter\bin\System.Web.WebPages.Deployment.dll
+D:\GitHub\elektrokonyk\CategoryFilter\bin\System.Web.WebPages.dll
+D:\GitHub\elektrokonyk\CategoryFilter\bin\System.Web.WebPages.Razor.dll
+D:\GitHub\elektrokonyk\CategoryFilter\bin\EntityFramework.xml
+D:\GitHub\elektrokonyk\CategoryFilter\bin\EntityFramework.SqlServer.xml
+D:\GitHub\elektrokonyk\CategoryFilter\bin\Newtonsoft.Json.xml
+D:\GitHub\elektrokonyk\CategoryFilter\bin\System.Net.Http.Formatting.xml
+D:\GitHub\elektrokonyk\CategoryFilter\bin\System.Web.Helpers.xml
+D:\GitHub\elektrokonyk\CategoryFilter\bin\System.Web.Http.xml
+D:\GitHub\elektrokonyk\CategoryFilter\bin\System.Web.Http.WebHost.xml
+D:\GitHub\elektrokonyk\CategoryFilter\bin\System.Web.Mvc.xml
+D:\GitHub\elektrokonyk\CategoryFilter\bin\System.Web.Razor.xml
+D:\GitHub\elektrokonyk\CategoryFilter\bin\System.Web.WebPages.xml
+D:\GitHub\elektrokonyk\CategoryFilter\bin\System.Web.WebPages.Deployment.xml
+D:\GitHub\elektrokonyk\CategoryFilter\bin\System.Web.WebPages.Razor.xml
+D:\GitHub\elektrokonyk\CategoryFilter\obj\Debug\CategoryFilter.csprojResolveAssemblyReference.cache
+D:\GitHub\elektrokonyk\CategoryFilter\obj\Debug\CategoryFilter.dll
+D:\GitHub\elektrokonyk\CategoryFilter\obj\Debug\CategoryFilter.pdb
