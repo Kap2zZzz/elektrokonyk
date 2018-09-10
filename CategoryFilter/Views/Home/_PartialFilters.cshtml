@@ -1,6 +1,7 @@
 ﻿@model CategoryFilter.Models.FilterViewModel
 @if (Model.Properties != null && Model.Properties.Count() > 0)
 {
+    int i = 0;
     <div>
         @foreach (CategoryFilter.Entities.Property p in Model.Properties)
         {
@@ -9,12 +10,14 @@
                     <h6 class="card-subtitle mb-2 text-primary">@p.Name</h6>
                     @foreach (var a in Model.PropertiesValue.Where(x => x.PropertyId == p.Id).GroupBy(x => x.Value, x => x.PropertyId).ToList())
                     {
-                        using (Ajax.BeginForm("ChangeFilter", "Home", new { Category = Model.CategoryName, PropertyId = p.Id, PropertyValue = a.Key }, new AjaxOptions { UpdateTargetId = "update" }))
+                        i++;
+                        using (Ajax.BeginForm("ChangeFilter", "Home", new { Category = Model.CategoryName, PropertyId = p.Id, PropertyValue = a.Key }, new AjaxOptions { UpdateTargetId = "update" }, new { id = "AjaxForm" + i }))
                         {
                             <div class="form-check">
-                                @Html.CheckBox(a.Key, false, new { onclick = "this.form.submit();", id = "CheckFilterValue" })
-                                <input type="submit" value="OK" />
-                                @*<label class="form-check-label" for="defaultCheck1">@a.Key</label>*@
+                                @*@Html.CheckBox(a.Key, false, new { onclick = "this.form.submit();", id = "CheckFilterValue" })*@
+                                <input type="checkbox" id="MyChekbox" onchange="$('#AjaxForm'+@i).submit()" />
+                                <label class="form-check-label" for="defaultCheck1">@a.Key</label>
+                                @*<input type="submit" value="OK" />*@
                             </div>
                         }
                     }
