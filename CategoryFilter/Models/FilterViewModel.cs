@@ -10,9 +10,12 @@ namespace CategoryFilter.Models
     {
         //public ICollection<string> Properties { get; set; }
         public string CategoryName { get; set; }
-        public IEnumerable<Product> Products { get; set; }
-        public IEnumerable<Property> Properties { get; set; }
-        public IEnumerable<PropertyValue> PropertiesValue { get; set; }
+        //public IEnumerable<Product> Products { get; set; }
+        //public IEnumerable<Property> Properties { get; set; }
+        //public IEnumerable<PropertyValue> PropertiesValue { get; set; }
+        public List<Product> Products { get; set; }
+        public List<Property> Properties { get; set; }
+        public List<PropertyValue> PropertiesValue { get; set; }
 
         //public List<Data> PropertiesValue2 { get; set; }
         //public ICollection<string> PropertiesValue { get; set; }

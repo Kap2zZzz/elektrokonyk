@@ -11,11 +11,12 @@
                     @foreach (var a in Model.PropertiesValue.Where(x => x.PropertyId == p.Id).GroupBy(x => x.Value, x => x.PropertyId).ToList())
                     {
                         i++;
-                        using (Ajax.BeginForm("ChangeFilter", "Home", new { Category = Model.CategoryName, PropertyId = p.Id, PropertyValue = a.Key }, new AjaxOptions { UpdateTargetId = "update" }, new { id = "AjaxForm" + i }))
+                        using (Ajax.BeginForm("ChangeFilter", "Home", new { Category = Model.CategoryName, PropertyId = p.Id, PropertyValue = a.Key}, new AjaxOptions { UpdateTargetId = "update" }, new { id = "AjaxForm" + i }))
                         {
                             <div class="form-check">
                                 @*@Html.CheckBox(a.Key, false, new { onclick = "this.form.submit();", id = "CheckFilterValue" })*@
-                                <input type="checkbox" id="MyChekbox" onchange="$('#AjaxForm'+@i).submit()" />
+                                <input type="checkbox" id="PropertyChekbox" name="PropertyChekbox" onchange="$('#AjaxForm'+@i).submit()" />
+                                @*<input type="hidden" value="false" name="PropertyChekbox" />*@
                                 <label class="form-check-label" for="defaultCheck1">@a.Key</label>
                                 @*<input type="submit" value="OK" />*@
                             </div>
